@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HashCode2018.IO
 {
-    public class Ride
+    public class Ride:ICloneable
     {
         public int a { get; set; }
         public int b { get; set; }
@@ -16,9 +16,16 @@ namespace HashCode2018.IO
         public int s { get; set; }
         public int f { get; set; }
 
+        public int ID { get; set; }
+
         public int bonus { get; set; }
 
-        public double GetDistance()
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public int GetDistance()
         {
             return Math.Abs(x - a) + Math.Abs(y - b);
         }

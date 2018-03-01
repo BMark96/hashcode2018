@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using HashCode2018.IO;
 
 namespace IO
 {
@@ -11,9 +12,8 @@ namespace IO
 
     class Program
     {
-        static string filename = "input.txt";
-        static int V, E, R, C, X;
-        static string[] videos;
+        static string filename = "input.in";
+        static int R, C, F, N, B, T;
 
         static void Main(string[] args)
         {
@@ -28,52 +28,35 @@ namespace IO
 
             //Kezdeti változó beolvasása
             string[] firstLine = lines[0].Split();
-            V = int.Parse(firstLine[0]);
-            E = int.Parse(firstLine[1]);
-            R = int.Parse(firstLine[2]);
-            C = int.Parse(firstLine[3]);
-            X = int.Parse(firstLine[4]);
+            R = int.Parse(firstLine[0]);
+            C = int.Parse(firstLine[1]);
+            F = int.Parse(firstLine[2]);
+            N = int.Parse(firstLine[3]);
+            B = int.Parse(firstLine[4]);
+            T = int.Parse(firstLine[5]);
 
-            #region ReadInTest
-            Console.WriteLine($"{V} videos, {E} endpoints, {R} request descriptions, {C} caches {X}MB each.");
+            List<Ride> rides = new List<Ride>();
 
-            #endregion
-            videos = lines[1].Split();
-            int currentLine = 2;
-            #region ReadInTest
-            Console.WriteLine("A videókhoz már nincs kedvem kiírni");
-            #endregion
+            int lineCounter = 1;
 
-            //Végpontokon iterálás
-            for (int i = 0; i < E; i++)
+            for (int i = 0; i < N; i++)
             {
-                //Egy végpont adatai, nyilván kellene hozzá osztály
-                string[] EndPointDatas = lines[currentLine++].Split();
-                #region ReadInTest
-                Console.WriteLine($"Endpoint {i} has {EndPointDatas[0]}ms datacenter latency and is connected to {EndPointDatas[1]} caches:");
-                #endregion
-                //Végigiterálás a végponthoz tartozó cache-eken
-                for (int j = 0; j < int.Parse(EndPointDatas[1]); j++)
+                string[] line = lines[lineCounter++].Split();
+                rides.Add(new Ride()
                 {
-                    //nyilván ehhez is osztály...
-                    string[] CacheLatencys = lines[currentLine++].Split();
-
-                    #region ReadInTest
-
-                    Console.WriteLine($"The latency (of endpoint {i}) to cache {CacheLatencys[0]} is {CacheLatencys[1]} ms.");
-
-                    #endregion
-                }
+                    a = int.Parse(line[0]),
+                    b = int.Parse(line[1]),
+                    x = int.Parse(line[2]),
+                    y = int.Parse(line[3]),
+                    s = int.Parse(line[4]),
+                    f = int.Parse(line[5])
+                });
             }
-            //Kéréseken iterálás
-            for (int i = 0; i < R; i++)
-            {
-                string[] requestDatas = lines[currentLine++].Split();
 
-                #region ReadInTest
-                Console.WriteLine($"{requestDatas[2]} requests for video {requestDatas[0]} coming from endpoint {requestDatas[1]}.");
-                #endregion
-            }
+            //Teszt
+            rides.ForEach(x => Console.WriteLine(x));
+
+            Console.ReadKey();
 
         }
     }

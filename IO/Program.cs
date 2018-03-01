@@ -15,9 +15,22 @@ namespace IO
         static string filename = "input.in";
         static int R, C, F, N, B, T;
 
+        static List<Ride> rides = new List<Ride>();
+
+        static List<Vehichle> vehicles;
+
         static void Main(string[] args)
         {
             ReadIn(filename);
+
+            vehicles = new List<Vehichle>();
+
+            for (int i = 0; i < F; i++)
+            {
+                vehicles.Add(new Vehichle());
+            }
+
+            vehicles.ForEach(x => Console.WriteLine(x));
 
             Console.ReadKey();
         }
@@ -35,7 +48,7 @@ namespace IO
             B = int.Parse(firstLine[4]);
             T = int.Parse(firstLine[5]);
 
-            List<Ride> rides = new List<Ride>();
+            
 
             int lineCounter = 1;
 
@@ -55,8 +68,7 @@ namespace IO
 
             //Teszt
             rides.ForEach(x => Console.WriteLine(x));
-
-            Console.ReadKey();
+          
 
         }
     }

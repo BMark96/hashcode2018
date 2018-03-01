@@ -16,6 +16,8 @@ namespace HashCode2018.IO
         public int s { get; set; }
         public int f { get; set; }
 
+        public int bonus { get; set; }
+
         public double GetDistance()
         {
             return Math.Abs(x - a) + Math.Abs(y - b);
